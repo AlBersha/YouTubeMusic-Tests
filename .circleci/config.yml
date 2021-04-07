@@ -1,14 +1,30 @@
-version: 2.1
+version: 2.0
 
-executors:
-  j15:
+jobs:
+  test:
     docker:
-      - image: 'cimg/openjdk:15.0'
+      - image: circleci/openjdk:stretch
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: ./mvnw test
 
-orbs:
-  maven: circleci/maven@0.0.12
+  build:
+    docker:
+      - image: circleci/openjdk:stretch
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: ./mvnw -Dmaven.test.skip=true package
 
 workflows:
-  maven_test:
+  version: 2
+
+  build-then-test:
     jobs:
-      - maven/test
+      - build
+      - test
