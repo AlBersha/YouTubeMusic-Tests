@@ -3,10 +3,7 @@ version: 2.0
 jobs:
   test:
     docker:
-      - image: circleci/openjdk:stretch
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      - image: markhobson/maven-chrome:jdk-15
     steps:
       - checkout
       - run: mvn test
