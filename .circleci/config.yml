@@ -7,7 +7,8 @@ jobs:
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: install selenium-hub
           command: docker run -d --rm -p 4444:4444 --net grid --name selenium-hub selenium/hub:3.11.0
