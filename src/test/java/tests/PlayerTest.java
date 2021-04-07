@@ -10,7 +10,6 @@ import pages.HomePage;
 
 public class PlayerTest {
     private static WebDriver driver;
-    private ExplorePage explorePage;
 
     @Before
     public void before() {
@@ -19,12 +18,5 @@ public class PlayerTest {
         driver.manage().window().fullscreen();
     }
 
-    @Test
-    public void LaunchNewReleaseTest(){
-        driver.get("https://music.youtube.com/explore");
-        explorePage = new ExplorePage(driver);
-        explorePage.getReleases().click();
-        explorePage.getAlbom().click();
-        explorePage.getSong().click();
-    }
+
 }

@@ -1,6 +1,7 @@
 package pages;
 
 import lombok.Data;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,6 +49,7 @@ public class HomePage {
     public void SearchForTrack(){
         searchIcon.click();
         searchBar.sendKeys("death of me");
+        searchBar.sendKeys(Keys.ENTER);
         // robot.keyPress();
     }
 }
