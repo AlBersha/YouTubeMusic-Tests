@@ -4,9 +4,11 @@ jobs:
   test:
     docker:
       - image: markhobson/maven-chrome:jdk-15
+    services:
+      - selenium/standalone-chrome
     steps:
-      - checkout
-      - run: mvn test
+      - mvn test $MAVEN_PASS $MAVEN_OPTS=selenium__standalone-chrome
+
 
 workflows:
   version: 2
